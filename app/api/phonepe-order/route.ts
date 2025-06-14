@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
                 );
             }
         
-            const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/verify?payment_id=${merchantOrderId}`;
+            const redirectUrl = `https://8th-mile-website.vercel.app/api/verify?payment_id=${merchantOrderId}`;
         
             // Create PhonePe payment request
             const request = StandardCheckoutPayRequest.builder()
