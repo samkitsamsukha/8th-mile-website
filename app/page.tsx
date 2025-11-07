@@ -113,8 +113,7 @@ export default function HomePage() {
                 <motion.div initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0 }} className="fraunces text-sm md:text-xl md:w-3/5">
-                  Rashtreeya Vidyalaya College of Engineering was founded by Late Sri M.C. Shivananda Sharma in 1963. His mission was to Impart Quality Education to all sections of the society. This institution has been set up with the purpose of producing future leaders, innovators, and torchbearers of technology. <br /><br /> As the college completes more than 60 glorious years, it has grown into a place where excellence in instruction and all-around development from the cornerstones of education is imparted to the students. <br /><br />
-                  One of the forefronts of quality education in the country, this institution has upheld its standard by training students as well as providing opportunities to those who seek to advance in the fields of science, technology, culture, and sports. It is justified to say that RVCE is a movement that has been in unhindered progress for more than half a century.
+                  Rashtreeya Vidyalaya College of Engineering, founded in 1963 by Late Sri M.C. Shivananda Sharma, was established to provide quality education to all. Over the past 60 years, it has grown into a hub of academic excellence and holistic development. As one of the nation’s leading institutions, RVCE continues to empower students in science, technology, culture, and sports—upholding a legacy of progress for over half a century.
                 </motion.div>
                 <motion.div initial={{ scale: 0.5, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -140,16 +139,17 @@ export default function HomePage() {
                 <motion.div initial={{ x: 100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0 }} className="fraunces text-sm md:text-xl md:w-3/5">
-                  The illustrious R V College of Engineering in Bangalore, India, hosts the 8th Mile techno-cultural festival, showcasing the talents of students from across the country, and fostering camaraderie and excellence. This event serves as a platform for students from various educational institutions nationwide to showcase their exceptional talents in technical and non-technical domains. However, the festival&apos;s overarching objective is to promote a sense of camaraderie and sportsmanship among all its participants, inculcating in them a spirit of healthy competition and mutual respect.<br /><br /> R V College of Engineering has a distinguished legacy of excellence in all spheres of academics, athletics, and extracurricular activities. The college has always set the bar high and led the way, leaving an indelible mark on the country&apos;s academic landscape. The 8th Mile festival, which is a true reflection of the college&apos;s diverse and rich culture, serves as a beacon of hope and inspiration for the younger generation of students who aspire to emulate the college&apos;s success story.
+                  R V College of Engineering, Bangalore, hosts the renowned 8th Mile techno-cultural festival, bringing together students from across India to showcase their talents in technical and cultural events. The fest promotes healthy competition, camaraderie, and mutual respect among participants. Known for its strong legacy in academics, sports, and extracurriculars, RVCE continues to set benchmarks of excellence nationwide.
                 </motion.div>
                 <motion.div initial={{ scale: 0.5, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0 }}
-                  className="md:hidden flex justify-center items-center">
+                  className="md:hidden flex justify-center items-center mx-">
                   <Image src={'/amaal.png'} alt="rvce college pic" width={500} height={200} className="rounded-xl" />
                 </motion.div>
               </div>
             </div>
+            <div><a href='/events' className='bg-[#f9dd9c] text-black font-bold py-2 px-4 rounded'>Explore our Events</a></div>
           </section>
         </div>
       </div>
@@ -242,11 +242,7 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
               className="fraunces text-sm"
             >
-              Rashtreeya Vidyalaya College of Engineering was founded by Late Sri M.C. Shivananda Sharma in 1963. His mission was to Impart Quality Education to all sections of the society. This institution has been set up with the purpose of producing future leaders, innovators, and torchbearers of technology.
-              <br /><br />
-              As the college completes more than 60 glorious years, it has grown into a place where excellence in instruction and all-around development from the cornerstones of education is imparted to the students.
-              <br /><br />
-              One of the forefronts of quality education in the country, this institution has upheld its standard by training students as well as providing opportunities to those who seek to advance in the fields of science, technology, culture, and sports. It is justified to say that RVCE is a movement that has been in unhindered progress for more than half a century.
+              Rashtreeya Vidyalaya College of Engineering, founded in 1963 by Late Sri M.C. Shivananda Sharma, was established to provide quality education to all. Over the past 60 years, it has grown into a hub of academic excellence and holistic development. As one of the nation’s leading institutions, RVCE continues to empower students in science, technology, culture, and sports—upholding a legacy of progress for over half a century.
             </motion.div>
 
             <motion.div
@@ -283,19 +279,14 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
               className="fraunces text-sm"
             >
-              The illustrious R V College of Engineering in Bangalore, India, hosts the 8th Mile techno-cultural festival, showcasing the talents of students from across the country, and fostering camaraderie and excellence.
-              <br /><br />
-              This event serves as a platform for students from various educational institutions nationwide to showcase their exceptional talents in technical and non-technical domains. However, the festivals overarching objective is to promote a sense of camaraderie and sportsmanship among all its participants, inculcating in them a spirit of healthy competition and mutual respect.
-              <br /><br />
-              R V College of Engineering has a distinguished legacy of excellence in all spheres of academics, athletics, and extracurricular activities. The college has always set the bar high and led the way, leaving an indelible mark on the country’s academic landscape.
+              R V College of Engineering, Bangalore, hosts the renowned 8th Mile techno-cultural festival, bringing together students from across India to showcase their talents in technical and cultural events. The fest promotes healthy competition, camaraderie, and mutual respect among participants. Known for its strong legacy in academics, sports, and extracurriculars, RVCE continues to set benchmarks of excellence nationwide.
             </motion.div>
+            <div className='flex justify-center items-center'>
+              <a href='/events' className='mt-10 bg-[#f9dd9c] text-black font-bold py-1 px-2 rounded'>Explore our Events</a>
+            </div>
           </div>
         </section>
-
-
       </div>
-
-
     </>
   );
 }
