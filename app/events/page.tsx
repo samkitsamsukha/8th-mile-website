@@ -118,7 +118,7 @@ const EventsPage = () => {
 
 
             {/* Search Bar */}
-            <div className="flex mx-auto justify-center items-center mb-6 bg-transparent w-full max-w-md">
+            <div className="flex mx-auto justify-center items-center mb-6 bg-transparent w-full max-w-md hidden">
                 <input
                     type="text"
                     placeholder="Search events..."
@@ -129,7 +129,7 @@ const EventsPage = () => {
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2 md:gap-4 justify-center mb-10">
+            <div className="flex flex-wrap gap-2 md:gap-4 justify-center mb-10 hidden">
                 {eventCategories.map(cat => (
                     <button
                         key={cat}
@@ -151,54 +151,74 @@ const EventsPage = () => {
                 </div>
             )}
 
-            {/* Event Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-6 md:gap-8">
-                {filteredEvents.map((event, index) => {
-                    return (
-                        <motion.div
-                            key={event.id || event._id || event.slug}
-                            variants={fadeInUp}
-                            initial="hidden"
-                            animate="visible"
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                            onClick={() => router.push(`/events/${event.slug}`)}
-                            className={`relative cursor-pointer bg-black overflow-hidden hover:scale-105 transition-transform shadow-sm h-full flex flex-col 
-    ${event.category === 'Cultural' ? 'shadow-orange-500' :
-                                    event.category === 'Technical' ? 'shadow-yellow-200' :
-                                        event.category === 'Gaming' ? 'shadow-red-400' :
-                                            'shadow-green-400'}`}
-                        >
+            {/* Event Cards grouped by category */}
+{Object.entries(
+    filteredEvents.reduce((acc: Record<string, Event[]>, event) => {
+        const cat = event.category || 'Other';
+        if (!acc[cat]) acc[cat] = [];
+        acc[cat].push(event);
+        return acc;
+    }, {})
+).map(([category, events]) => (
+    <div key={category} className="mb-12">
+        {/* Category Heading */}
+        <h2 className="text-3xl font-extrabold text-[#f9dd9c] mb-6 text-center">
+            {category}
+        </h2>
 
-                            {/* Event Image */}
-                            <div className="relative w-full" style={{ paddingBottom: '125%' }}>
-                                <Image
-                                    src={event.photoPath || '/images/event-placeholder.jpg'}
-                                    alt={event.name}
-                                    fill
-                                    className="object-cover rounded-md"
-                                />
-                            </div>
+        {/* Event Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-6 md:gap-8">
+            {events.map((event, index) => (
+                <motion.div
+                    key={event.id || event._id || event.slug}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    onClick={() => router.push(`/events/${event.slug}`)}
+                    className={`relative cursor-pointer bg-black overflow-hidden hover:scale-105 transition-transform shadow-sm h-full flex flex-col 
+                        ${
+                            event.category === 'Cultural'
+                                ? 'shadow-orange-500'
+                                : event.category === 'Technical'
+                                ? 'shadow-yellow-200'
+                                : event.category === 'Gaming'
+                                ? 'shadow-red-400'
+                                : 'shadow-green-400'
+                        }`}
+                >
+                    {/* Event Image */}
+                    <div className="relative w-full" style={{ paddingBottom: '125%' }}>
+                        <Image
+                            src={event.photoPath || '/images/event-placeholder.jpg'}
+                            alt={event.name}
+                            fill
+                            className="object-cover rounded-md"
+                        />
+                    </div>
 
-                            {/* Content */}
-                            <div className="p-4 flex-grow flex flex-col">
-                                <div className="text-xl font-bold text-[#f9dd9c] mb-2 line-clamp-1">{event.name}</div>
-                                <p className="text-sm text-gray-300 mb-3 line-clamp-2 flex-grow">{event.description}</p>
-                            </div>
+                    {/* Content */}
+                    <div className="p-4 flex-grow flex flex-col">
+                        <div className="text-xl font-bold text-[#f9dd9c] mb-2 line-clamp-1">
+                            {event.name}
+                        </div>
+                        <p className="text-sm text-gray-300 mb-3 line-clamp-2 flex-grow">
+                            {event.description}
+                        </p>
+                    </div>
 
-                            {/* ❌ Overlay for closed registration */}
-                            {
-                                !event.registrationOpen && (
-                                    <div className="absolute inset-0 bg-black opacity-80 flex items-center justify-center text-white text-lg font-bold rounded-md">
-                                        Registrations Opening Soon
-                                    </div>
-                                )
-                            }
+                    {/* Overlay for closed registration */}
+                    {!event.registrationOpen && (
+                        <div className="absolute inset-0 bg-black opacity-80 flex items-center justify-center text-white text-lg font-bold rounded-md">
+                            Registrations Opening Soon
+                        </div>
+                    )}
+                </motion.div>
+            ))}
+        </div>
+    </div>
+))}
 
-                        </motion.div>
-
-                    );
-                })}
-            </div>
 
             {filteredEvents.length === 0 && !loading && (
                 <div className="text-center py-20 text-gray-400">
